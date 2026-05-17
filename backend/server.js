@@ -6,27 +6,27 @@ import cors from 'cors'
 
 config()
 // create http server
-const app=exp()
+const app = exp()
 //  add cors
 app.use(cors({
-  origin:['http://localhost:5173']
+  origin: ['https://user-management-app-topaz.vercel.app']
 }))
 // add body parse middleware
 app.use(exp.json())
 // forward req to UserAPI if path starts with /user-api
-app.use("/user-api",UserApp)
+app.use("/user-api", UserApp)
 // connect to DB
 
-async function connectDB(){
-    try{
-        await connect(process.env.DB_URL);
-        console.log("connected to DB")
-        // assign port number
-        const port=process.env.PORT
-        app.listen(port,()=>console.log(`server on port ${port}`))
-    }catch(err){
-        console.log("error in db connection:",err)
-    }
+async function connectDB() {
+  try {
+    await connect(process.env.DB_URL);
+    console.log("connected to DB")
+    // assign port number
+    const port = process.env.PORT
+    app.listen(port, () => console.log(`server on port ${port}`))
+  } catch (err) {
+    console.log("error in db connection:", err)
+  }
 }
 connectDB()
 

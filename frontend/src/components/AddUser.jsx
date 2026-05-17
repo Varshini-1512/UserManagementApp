@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import {useForm} from 'react-hook-form'
 import {useNavigate } from 'react-router'
+import BASE_URL from './config/BaseApi';
 
 function AddUser() {
   const {register,handleSubmit,formState:{errors}}=useForm()
@@ -11,7 +12,7 @@ function AddUser() {
   const onUserCreate=async(newUser)=>{
     setLoading(true)
     try{
-      let res=await fetch("http://localhost:3000/user-api/users",{
+      let res=await fetch(`${BASE_URL}/user-api/users`,{
         method:"POST",
         headers:{
           "Content-Type":"application/json"
